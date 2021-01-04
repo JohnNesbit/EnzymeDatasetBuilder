@@ -29,4 +29,4 @@ for name in os.listdir("urls"):
 	if broken:
 		continue
 
-	np.save("chems/chems" + str(gots) + ".npy", np.array(chems))
+	np.save("chems/chems" + str(gots) + ".npy", [np.array(chems), np.load("aa/aa" + str(gots) + ".npy")])
