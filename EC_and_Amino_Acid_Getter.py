@@ -81,7 +81,7 @@ for elink in t:
         text = ''.join(text)
         text.replace('\\n', '')
     except:
-        print("getting molested by biocyc")
+        print("got skrewed by biocyc")
 
     tex = []
     for char in text:
