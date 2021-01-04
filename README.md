@@ -13,5 +13,6 @@ navigate through the website.
 This file loops through the chemical page links and retrives the SMILE encodings from MetaCyC. It then saves them the csv files accesable through numpy.
 
 ## Format of ran dataset
-With all of the files run sequentially they will produce 4 different directories. Each directory has a file for each enzyme found. Two of these directories are significant: "aa" 
-contains numpy csvs of the amino acid profile of each enzyme, "chem" contains numpy csvs for each enzyme containing their subtrate's and product's SMILE encodings
+With all of the files run sequentially they will produce 4 different directories. Each directory has a file for each enzyme found. One of these directories is significant: "chem" 
+contains numpy csvs for each enzyme containing their subtrate's and product's SMILE encodings and the enzyme's aa encoding. Each enzyme's aa sequence is encoded into numbers via
+simply assigning thier respective letter with a number. It is in this format to enable easy future one hot encoding.
