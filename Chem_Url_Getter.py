@@ -109,7 +109,7 @@ for name in os.listdir("ec"):
 	except:
 		continue
 
-	urls.remove(url)
+	urls = [iurl for iurl in urls if iurl != url]
 
 	print(urls)
 	print(url)
