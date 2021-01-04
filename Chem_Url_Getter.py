@@ -92,8 +92,8 @@ def look_through(url, driver, ya):
 
 
 xpath = '//*[@id="popupNaN"]/div[2]'
-gots = 204
-alreadys = 204
+gots = 0
+alreadys = 0
 for name in os.listdir("ec"):
 	if alreadys != 0:
 		alreadys -= 1
