@@ -16,3 +16,7 @@ This file loops through the chemical page links and retrives the SMILE encodings
 With all of the files run sequentially they will produce 4 different directories. Each directory has a file for each enzyme found. One of these directories is significant: "chem" 
 contains numpy csvs for each enzyme containing their subtrate's and product's SMILE encodings and the enzyme's aa encoding. Each enzyme's aa sequence is encoded into numbers via
 simply assigning thier respective letter with a number. It is in this format to enable easy future one hot encoding.
+
+## Dataset
+There is a preproccessed dataset file that is loadable via pandas.read_csv. This file was not produced by the webscraper but rather is the data that MetaCyc has downloadable. 
+The web scraper can be used to add to this dataset of ~1400 samples
