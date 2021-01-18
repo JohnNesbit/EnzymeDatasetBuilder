@@ -1,5 +1,5 @@
 # EnzymeDatasetBuilder
-This repository contains code that builds a dataset of enzyme's amino acid sequences and SMILEs of their substrates and products.
+This repository contains code for a web scraper that builds a dataset of enzyme's amino acid sequences and SMILEs of their substrates and products.
 
 ## 1. EC and Amino acid getter
 This file accesses the Uniprot database to find enzymes and their names. The program then searches the MetaCyC database for the same enzyme for future use.
