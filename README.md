@@ -19,4 +19,4 @@ simply assigning thier respective letter with a number. It is in this format to 
 
 ## Dataset
 There is a preproccessed dataset file that is loadable via pandas.read_csv. This file was not produced by the webscraper but rather is the data that MetaCyc has downloadable. 
-The web scraper can be used to add to this dataset of ~1400 samples
+The web scraper can be used to add to this dataset of ~1600 samples
