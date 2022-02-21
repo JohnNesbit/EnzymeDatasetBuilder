@@ -22,6 +22,7 @@ for j in range(pages):
     links = links + list(
         get_links.get_links("https://www.uniprot.org/uniprot/?query=enzyme" + "&offset=" + str(j * 25)))
 
+# find working links: eliminate all of the extraneous links on the webpage
 legit_links = []
 for i in links:
     if "https://www.uniprot.org/uniprot/" in i and i != "https://www.uniprot.org/uniprot/":
@@ -36,7 +37,7 @@ from bs4.element import Comment
 import urllib.request
 
 
-
+# get visible elements
 def tag_visible(element):
     if element.parent.name in ['style', 'script', 'head', 'title', 'meta', '[document]']:
         return False
@@ -44,7 +45,7 @@ def tag_visible(element):
         return False
     return True
 
-
+# get the visible text from the page
 def text_from_html(body):
     soup = BeautifulSoup(body, 'html.parser')
     texts = soup.findAll(text=True)
@@ -56,13 +57,17 @@ import re
 broken = 0
 last = 0
 gots = 39
+
+# initialize iterator that shows progress
 t = tqdm.tqdm(legit_links)
+
+# loop through links and get the ammino acid sequences for each enzyme.
 for elink in t:
     ecList = []
     aa = []
     enzyme_page = 0
+    
     # get body text. aa sequence starts after SV number, so just throw out anything with a number after it + numbers
-    #print(elink)
     html = urllib.request.urlopen(elink + ".fasta").read()
     try:
         nhtml = str(urllib.request.urlopen(elink).read())
@@ -70,7 +75,6 @@ for elink in t:
         continue
     name = str(nhtml.split('<h1 property="name">')[1].split('</h1>')[0])
     name = name.replace(" ", "")
-    #print(name)
 
     if "/" in name or "\\" in name or "[" in name:
         continue
@@ -81,7 +85,7 @@ for elink in t:
         text = ''.join(text)
         text.replace('\\n', '')
     except:
-        print("got skrewed by biocyc")
+        print("BioCyc Error")
 
     tex = []
     for char in text:
@@ -101,14 +105,12 @@ for elink in t:
         try:
             prelink = html2.split("/gene?orgid")[1]
         except IndexError:
-            #print('link is retarded')
             continue
 
         enzyme_page = 'https://biocyc.org/gene?orgid' + str(prelink.split('">')[0])
 
         if '\\' in enzyme_page:
             enzyme_page = enzyme_page.split("\\")[0]
-        #print(enzyme_page)
 
 
         ol = str(urllib.request.urlopen(enzyme_page).read())
@@ -119,12 +121,10 @@ for elink in t:
         EC_page = "https://biocyc.org/META/NEW-IMAGE?type=REACTION" + str(ol.split("/META/NEW-IMAGE?type=REACTION")[1].split('"')[0])
     except IndexError:
         continue
-    #print(EC_page)
 
     aa.append(text)
     ecList.append([EC_page, elink])
 
-    #print("GOT ONE!")
 
     aah = []
     for i in range(sequence_size):
